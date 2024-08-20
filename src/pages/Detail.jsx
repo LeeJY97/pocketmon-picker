@@ -8,15 +8,14 @@ const Detail = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  const { img_url, korean_name, pokemon_types, id, description } =
-    MOCK_DATA[params.id];
+  const { img_url, korean_name, types, id, description } = MOCK_DATA[params.id];
 
   return (
     <StBackground>
       <StBox>
         <img src={img_url} />
         <p>{korean_name}</p>
-        <p>{pokemon_types.join(", ")}</p>
+        <p>{types.join(", ")}</p>
         <p>No. {id}</p>
         <p>{description}</p>
 
