@@ -8,43 +8,29 @@ const imgStyle = {
   margin: "0px",
 };
 
-const getFormCard = ({
+const PokemonCard = ({
   id,
   img_url,
   korean_name,
-  pokemon_types,
-  description,
   cardType,
   action,
   text,
   index,
-  navigateToDetail,
 }) => {
-  switch (cardType) {
-    case "empty":
-      return (
-        <StEmpty>
-          <img src="/src/assets/images/pokeball.png" alt="" style={imgStyle} />
-        </StEmpty>
-      );
-    default:
-      return (
-        <StCard>
-          <img src={img_url} alt="" style={imgStyle} />
-          <Link to={`./Detail/${index}`}>
-            <span>{korean_name}</span>
-          </Link>
-          <span>No. {id}</span>
-          <Button text={text} action={action} index={index}></Button>
-        </StCard>
-      );
-  }
-};
-
-const PokemonCard = (props) => {
-  const card = getFormCard(props);
-
-  return card;
+  return cardType === "empty" ? (
+    <StEmpty>
+      <img src="/src/assets/images/pokeball.png" alt="" style={imgStyle} />
+    </StEmpty>
+  ) : (
+    <StCard>
+      <img src={img_url} alt="" style={imgStyle} />
+      <Link to={`./Detail/${index}`}>
+        <span>{korean_name}</span>
+      </Link>
+      <span>No. {id}</span>
+      <Button text={text} action={action} index={index}></Button>
+    </StCard>
+  );
 };
 
 const StCard = styled.div`

@@ -10,54 +10,34 @@ const StDashboard = styled.div`
   gap: 20px;
 `;
 
-const getSelectedPokemonList = ({
-  selected,
-  navigateToDetail,
-  text,
-  action,
-}) => {
+const Dashboard = ({ selectedIndex, navigateToDetail, text, action }) => {
   const pokemonList = MOCK_DATA.filter((_, index) => {
-    return selected.includes(index) ? true : false;
+    return selectedIndex.includes(index) ? true : false;
   });
 
-  const pokemonCardList = addEmptyCard({
-    pokemonList,
-    action,
-    text,
-    navigateToDetail,
-  });
+  const MAX_LENGTH = 6;
+  const pokemonListLength = pokemonList.length;
 
-  return pokemonCardList;
-};
-
-const addEmptyCard = ({ pokemonList, action, text, navigateToDetail }) => {
-  const pokemonCardList = [];
-
-  for (let i = 0; i < 6; i++) {
-    if (!pokemonList[i]) {
-      pokemonCardList.push(<PokemonCard cardType="empty" />);
-    } else {
-      pokemonCardList.push(
-        <PokemonCard
-          {...pokemonList[i]}
-          action={action}
-          text={text}
-          index={pokemonList[i].id - 1}
-          navigateToDetail={navigateToDetail}
-        />
-      );
-    }
-  }
-
-  return pokemonCardList;
-};
-
-const Dashboard = (props) => {
-  const pokemonCardList = getSelectedPokemonList(props);
+  const filledList = pokemonList.concat(
+    new Array(MAX_LENGTH - pokemonListLength).fill(null)
+  );
 
   return (
     <StDashboard>
-      {pokemonCardList.map((pokemon, index) => pokemon)}
+      {filledList.map((pokemon, index) => {
+        return !pokemon ? (
+          <PokemonCard key={index} cardType="empty" />
+        ) : (
+          <PokemonCard
+            key={`dashboard${pokemon.id - 1}`}
+            {...pokemon}
+            action={action}
+            text={text}
+            index={pokemon.id - 1}
+            navigateToDetail={navigateToDetail}
+          />
+        );
+      })}
     </StDashboard>
   );
 };

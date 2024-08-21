@@ -19,11 +19,7 @@ const Detail = () => {
         <p>No. {id}</p>
         <p>{description}</p>
 
-        <Button
-          text="뒤로 가기"
-          type=""
-          action={() => navigate("/Dex")}
-        ></Button>
+        <Button text="뒤로 가기" type="" action={() => navigate(-1)}></Button>
       </StBox>
     </StBackground>
   );

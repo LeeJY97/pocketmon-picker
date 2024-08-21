@@ -19,10 +19,11 @@ const StHeadSection = styled.section`
   align-items: center;
   width: 100%;
   max-width: 1200px;
+  height: 450px;
 `;
 
 const StBodySection = styled.section`
-  margin: 100px auto;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -36,6 +37,10 @@ const Dex = () => {
   const navigate = useNavigate();
 
   const addPokemon = (index) => {
+    if (selectedIndex.length >= 6) {
+      alert("6개 이상하려면 돈내야됨");
+      return;
+    }
     setSelectedIndex([...selectedIndex, index]);
   };
 
