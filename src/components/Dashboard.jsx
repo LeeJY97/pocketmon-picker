@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import PokemonCard from "./PokemonCard";
-import MOCK_DATA from "../mock";
 import styled from "styled-components";
+import { PokemonContext } from "../context/PokemonContext";
 
 const StDashboard = styled.div`
   display: flex;
@@ -10,9 +10,11 @@ const StDashboard = styled.div`
   gap: 20px;
 `;
 
-const Dashboard = ({ selectedIndex, navigateToDetail, text, action }) => {
-  const pokemonList = MOCK_DATA.filter((_, index) => {
-    return selectedIndex.includes(index) ? true : false;
+const Dashboard = ({ text, action }) => {
+  const pokemonContext = useContext(PokemonContext);
+
+  const pokemonList = pokemonContext.allPokemonList.filter((_, index) => {
+    return pokemonContext.selectedIndex.includes(index) ? true : false;
   });
 
   const MAX_LENGTH = 6;
@@ -34,7 +36,6 @@ const Dashboard = ({ selectedIndex, navigateToDetail, text, action }) => {
             action={action}
             text={text}
             index={pokemon.id - 1}
-            navigateToDetail={navigateToDetail}
           />
         );
       })}

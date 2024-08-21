@@ -4,6 +4,7 @@ import MOCK_DATA from "../mock";
 import styled from "styled-components";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
+import { PokemonContext } from "../context/PokemonContext";
 
 const StMainContainer = styled.div`
   display: flex;
@@ -34,6 +35,8 @@ const StBodySection = styled.section`
 
 const Dex = () => {
   const [selectedIndex, setSelectedIndex] = useState([]);
+  const [allPokemonList] = useState(() => MOCK_DATA);
+
   const navigate = useNavigate();
 
   const addPokemon = (index) => {
@@ -54,25 +57,19 @@ const Dex = () => {
   };
 
   return (
-    <StMainContainer>
-      <StHeadSection>
-        <h1>나만의 포켓몬</h1>
-        <Dashboard
-          selectedIndex={selectedIndex}
-          action={removePokemon}
-          text="삭제"
-          navigateToDetail={navigateToDetail}
-        />
-      </StHeadSection>
-      <StBodySection>
-        <PokemonList
-          pokemonList={MOCK_DATA}
-          action={addPokemon}
-          text="추가"
-          navigateToDetail={navigateToDetail}
-        />
-      </StBodySection>
-    </StMainContainer>
+    <PokemonContext.Provider
+      value={{ allPokemonList, selectedIndex, navigateToDetail }}
+    >
+      <StMainContainer>
+        <StHeadSection>
+          <h1>나만의 포켓몬</h1>
+          <Dashboard action={removePokemon} text="삭제" />
+        </StHeadSection>
+        <StBodySection>
+          <PokemonList action={addPokemon} text="추가" />
+        </StBodySection>
+      </StMainContainer>
+    </PokemonContext.Provider>
   );
 };
 

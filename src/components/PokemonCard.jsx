@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import { Link, useNavigate } from "react-router-dom";
+import { PokemonContext } from "../context/PokemonContext";
 
 const imgStyle = {
   width: "80%",
@@ -17,6 +18,8 @@ const PokemonCard = ({
   text,
   index,
 }) => {
+  const pokemonContext = useContext(PokemonContext);
+
   return cardType === "empty" ? (
     <StEmpty>
       <img src="/src/assets/images/pokeball.png" alt="" style={imgStyle} />
