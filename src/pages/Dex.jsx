@@ -32,17 +32,16 @@ const StBodySection = styled.section`
 `;
 
 const Dex = () => {
-  const [selected, setSelected] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState([]);
   const navigate = useNavigate();
-  // navigate("./detail")
 
   const addPokemon = (index) => {
-    setSelected([...selected, index]);
+    setSelectedIndex([...selectedIndex, index]);
   };
 
   const removePokemon = (index) => {
-    const removeArray = selected.filter((_, idx) => idx !== index);
-    setSelected([removeArray]);
+    const removeArray = selectedIndex.filter((idx) => idx !== index);
+    setSelectedIndex([...removeArray]);
   };
 
   const navigateToDetail = (index) => {
@@ -54,7 +53,7 @@ const Dex = () => {
       <StHeadSection>
         <h1>나만의 포켓몬</h1>
         <Dashboard
-          selected={selected}
+          selectedIndex={selectedIndex}
           action={removePokemon}
           text="삭제"
           navigateToDetail={navigateToDetail}

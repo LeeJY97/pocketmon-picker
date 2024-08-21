@@ -7,6 +7,7 @@ const PokemonList = ({ pokemonList, text, action, navigateToDetail }) => {
       {pokemonList.map((pokemon, index) => {
         return (
           <PokemonCard
+            key={""}
             {...pokemon}
             text={text}
             index={index}

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const textMap = {};
 
-const Button = ({ text, type, removePokemon, addPokemon, index, action }) => {
+const Button = ({ text, type, index, action }) => {
   return (
     <StBtn type={type} onClick={() => action(index)}>
       {text}
