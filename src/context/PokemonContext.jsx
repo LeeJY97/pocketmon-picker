@@ -23,7 +23,6 @@ export function PokemonProvider({ children }) {
   };
 
   const removePokemon = (pokemonId) => {
-    console.log("selectedPokemon", selectedPokemon);
     const removeArray = selectedPokemon.filter((id) => id !== pokemonId);
     setSelectedPokemon([...removeArray]);
   };

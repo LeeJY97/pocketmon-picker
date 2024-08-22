@@ -1,9 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 const Button = ({ text, type = "button", id, action }) => {
+  const dispatch = useDispatch();
+
   return (
-    <StBtn type={type} onClick={() => action(id)}>
+    <StBtn type={type} onClick={() => dispatch(action(id))}>
       {text}
     </StBtn>
   );

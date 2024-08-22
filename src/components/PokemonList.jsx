@@ -1,18 +1,22 @@
-import React, { useContext } from "react";
+import React from "react";
 import PokemonCard from "./PokemonCard";
-import { usePokemon } from "../context/PokemonContext";
+import { useSelector } from "react-redux";
+import { addPokemon } from "../redux/slices/pokemonSlice";
+
 const PokemonList = () => {
-  const pokemonContext = usePokemon();
+  const { allPokemonList, selectedPokemon } = useSelector(
+    (state) => state.pokemon
+  );
 
   return (
     <>
-      {pokemonContext.allPokemonList.map((pokemon, index) => {
+      {allPokemonList.map((pokemon) => {
         return (
           <PokemonCard
             key={pokemon.id}
             pokemon={pokemon}
             text="추가"
-            action={pokemonContext.addPokemon}
+            action={addPokemon}
           />
         );
       })}

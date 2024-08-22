@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import PokemonCard from "./PokemonCard";
 import styled from "styled-components";
-import { usePokemon } from "../context/PokemonContext";
+import { useSelector } from "react-redux";
+import { removePokemon } from "../redux/slices/pokemonSlice";
 
 const StDashboard = styled.div`
   display: flex;
@@ -11,10 +12,12 @@ const StDashboard = styled.div`
 `;
 
 const Dashboard = ({ MAX_LENGTH = 6 }) => {
-  const pokemonContext = usePokemon();
+  const { allPokemonList, selectedPokemon } = useSelector(
+    (state) => state.pokemon
+  );
 
-  const pokemonList = pokemonContext.allPokemonList.filter((pokemon) => {
-    return pokemonContext.selectedPokemon.includes(pokemon.id) ? true : false;
+  const pokemonList = allPokemonList.filter((pokemon) => {
+    return selectedPokemon.includes(pokemon.id) ? true : false;
   });
 
   const pokemonListLength = pokemonList.length;
@@ -33,7 +36,7 @@ const Dashboard = ({ MAX_LENGTH = 6 }) => {
             key={`dashboard${pokemon.id}`}
             pokemon={pokemon}
             text="삭제"
-            action={pokemonContext.removePokemon}
+            action={removePokemon}
           />
         );
       })}
