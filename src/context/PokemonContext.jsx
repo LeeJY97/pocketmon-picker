@@ -12,10 +12,7 @@ export function PokemonProvider({ children }) {
   const [allPokemonList] = useState(() => MOCK_DATA);
 
   const addPokemon = (pokemonId) => {
-    if (selectedPokemon.length >= 6) {
-      alert("6개 이상하려면 돈내야됨");
-      return;
-    }
+    selectedPokemon.length >= 6 && alert("6개 이상하려면 돈내야됨");
 
     selectedPokemon.includes(pokemonId)
       ? alert("중복")

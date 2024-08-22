@@ -11,9 +11,6 @@ const pokemonSlice = createSlice({
     selectedPokemon: [],
   },
   reducers: {
-    setAllpokemonList: (state, action) => {
-
-    },
     addPokemon: (state, action) => {
       const pokemonId = action.payload;
 

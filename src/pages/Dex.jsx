@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import Dashboard from "../components/Dashboard";
-import PokemonList from "../components/PokemonList";
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import Dashboard from '../components/Dashboard';
+import PokemonList from '../components/PokemonList';
 
 const StMainContainer = styled.div`
   display: flex;
