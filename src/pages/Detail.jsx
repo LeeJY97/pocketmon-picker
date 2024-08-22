@@ -5,8 +5,6 @@ import MOCK_DATA from '../mock';
 import { StMain } from '../styled/StMain';
 import { addPokemon } from '../redux/slices/pokemonSlice';
 import { useDispatch } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -15,8 +13,6 @@ const Detail = () => {
   const params = useParams();
 
   const { img_url, korean_name, types, id, description } = MOCK_DATA[params.id - 1];
-  const addComplete = () => toast('추가 완료!', { autoClose: 1000 });
-  const addFail = () => toast('실패');
 
   return (
     <StMain gap={'10px'}>
@@ -25,21 +21,19 @@ const Detail = () => {
       <p>{types.join(', ')}</p>
       <p>No. {id}</p>
       <p>{description}</p>
-      <button
-        onClick={() => {
+      <Button
+        text='추가'
+        type='default'
+        action={() => {
           try {
             dispatch(addPokemon(id));
-            addComplete();
           } catch (e) {
             addFail();
           }
         }}
-      >
-        추가
-      </button>
+      ></Button>
 
-      <Button text='뒤로 가기' type='' action={() => navigate(-1)}></Button>
-      <ToastContainer />
+      <Button text='뒤로 가기' type='back' action={() => navigate(-1)}></Button>
     </StMain>
   );
 };
