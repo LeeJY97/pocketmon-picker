@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
 import PokemonCard from "./PokemonCard";
-import { PokemonContext } from "../context/PokemonContext";
-const PokemonList = ({ text, action }) => {
-  const pokemonContext = useContext(PokemonContext);
+import { usePokemon } from "../context/PokemonContext";
+const PokemonList = () => {
+  const pokemonContext = usePokemon();
+
   return (
     <>
       {pokemonContext.allPokemonList.map((pokemon, index) => {
         return (
           <PokemonCard
-            key={pokemon.id - 1}
-            {...pokemon}
-            text={text}
-            index={index}
-            action={action}
+            key={pokemon.id}
+            pokemon={pokemon}
+            text="추가"
+            action={pokemonContext.addPokemon}
           />
         );
       })}

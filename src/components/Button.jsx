@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const textMap = {};
-
-const Button = ({ text, type, index, action }) => {
+const Button = ({ text, type = "button", id, action }) => {
   return (
-    <StBtn type={type} onClick={() => action(index)}>
+    <StBtn type={type} onClick={() => action(id)}>
       {text}
     </StBtn>
   );

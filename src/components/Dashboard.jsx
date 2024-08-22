@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import PokemonCard from "./PokemonCard";
 import styled from "styled-components";
-import { PokemonContext } from "../context/PokemonContext";
+import { usePokemon } from "../context/PokemonContext";
 
 const StDashboard = styled.div`
   display: flex;
@@ -10,14 +10,13 @@ const StDashboard = styled.div`
   gap: 20px;
 `;
 
-const Dashboard = ({ text, action }) => {
-  const pokemonContext = useContext(PokemonContext);
+const Dashboard = ({ MAX_LENGTH = 6 }) => {
+  const pokemonContext = usePokemon();
 
-  const pokemonList = pokemonContext.allPokemonList.filter((_, index) => {
-    return pokemonContext.selectedIndex.includes(index) ? true : false;
+  const pokemonList = pokemonContext.allPokemonList.filter((pokemon) => {
+    return pokemonContext.selectedPokemon.includes(pokemon.id) ? true : false;
   });
 
-  const MAX_LENGTH = 6;
   const pokemonListLength = pokemonList.length;
 
   const filledList = pokemonList.concat(
@@ -31,11 +30,10 @@ const Dashboard = ({ text, action }) => {
           <PokemonCard key={index} cardType="empty" />
         ) : (
           <PokemonCard
-            key={`dashboard${pokemon.id - 1}`}
-            {...pokemon}
-            action={action}
-            text={text}
-            index={pokemon.id - 1}
+            key={`dashboard${pokemon.id}`}
+            pokemon={pokemon}
+            text="삭제"
+            action={pokemonContext.removePokemon}
           />
         );
       })}
