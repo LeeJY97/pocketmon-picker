@@ -1,37 +1,30 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import Button from "./Button";
-import { Link, useNavigate } from "react-router-dom";
-import { PokemonContext } from "../context/PokemonContext";
+import { Link } from "react-router-dom";
 
 const imgStyle = {
   width: "80%",
   margin: "0px",
 };
 
-const PokemonCard = ({
-  id,
-  img_url,
-  korean_name,
-  cardType,
-  action,
-  text,
-  index,
-}) => {
-  const pokemonContext = useContext(PokemonContext);
-
+const PokemonCard = ({ pokemon, cardType, action, text }) => {
   return cardType === "empty" ? (
     <StEmpty>
-      <img src="/src/assets/images/pokeball.png" alt="" style={imgStyle} />
+      <img
+        src="/src/assets/images/pokeball.png"
+        alt="포켓볼"
+        style={imgStyle}
+      />
     </StEmpty>
   ) : (
     <StCard>
-      <img src={img_url} alt="" style={imgStyle} />
-      <Link to={`./Detail/${index}`}>
-        <span>{korean_name}</span>
+      <img src={pokemon.img_url} alt={pokemon.korean_name} style={imgStyle} />
+      <Link to={`./Detail/${pokemon.id}`}>
+        <span>{pokemon.korean_name}</span>
       </Link>
-      <span>No. {id}</span>
-      <Button text={text} action={action} index={index}></Button>
+      <span>No. {pokemon.id}</span>
+      <Button text={text} action={action} id={pokemon.id}></Button>
     </StCard>
   );
 };
