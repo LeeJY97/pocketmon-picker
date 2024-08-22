@@ -25,11 +25,7 @@ const Detail = () => {
         text='추가'
         type='default'
         action={() => {
-          try {
-            dispatch(addPokemon(id));
-          } catch (e) {
-            addFail();
-          }
+          dispatch(addPokemon(id));
         }}
       ></Button>
 
