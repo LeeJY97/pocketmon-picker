@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Dashboard from '../components/Dashboard';
 import PokemonList from '../components/PokemonList';
 import { useDispatch } from 'react-redux';
-import { setIsPremium } from '../redux/slices/pokemonSlice';
+import { setPlan } from '../redux/slices/pokemonSlice';
 
 const StMainContainer = styled.div`
   display: flex;
@@ -34,7 +34,9 @@ const StBodySection = styled.section`
   gap: 20px;
 `;
 
-const StPremiumButton = styled.button`
+// 포지션 box를 따로 ..
+// or style 컴포넌트 확장 관련 찾아보기
+const StPlanButton = styled.button`
   position: relative;
   top: 100px;
   left: 100px;
@@ -48,12 +50,12 @@ const StPremiumButton = styled.button`
 const Dex = () => {
   const dispatch = useDispatch();
 
-  const handlePremium = () => {
-    dispatch(setIsPremium({ isPremium: true, maxDashboardLength: 8 }));
+  const handlePlan = () => {
+    dispatch(setPlan('standard'));
   };
   return (
     <StMainContainer>
-      <StPremiumButton onClick={handlePremium}>유료</StPremiumButton>
+      <StPlanButton onClick={handlePlan}>유료</StPlanButton>
       <StHeadSection>
         <h1>나만의 포켓몬</h1>
         <Dashboard />

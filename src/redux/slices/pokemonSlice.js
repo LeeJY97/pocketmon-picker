@@ -3,27 +3,34 @@ import MOCK_DATA from "../../mock";
 
 const initialPokemonList = MOCK_DATA;
 
+const planMap = {
+  'free': { maxDashboardLength: 6 },
+  'standard': { maxDashboardLength: 8 },
+  'premium': { maxDashboardLength: 30 },
+}
 
 const pokemonSlice = createSlice({
   name: 'pokemon',
   initialState: {
     allPokemonList: [...initialPokemonList],
     selectedPokemon: [],
+    plan: 'none',
     maxDashboardLength: 6,
-    isPremium: false,
   },
   reducers: {
-    setIsPremium: (state, action) => {
+    setPlan: (state, action) => {
       console.log('action.payload', action.payload);
-      state.isPremium = action.payload.isPremium;
-      state.maxDashboardLength = action.payload.maxDashboardLength;
+
+      state.plan = action.payload;
+
+      state.maxDashboardLength = planMap[action.payload].maxDashboardLength
     },
 
     addPokemon: (state, action) => {
       const pokemonId = action.payload;
 
       if (state.selectedPokemon.length >= state.maxDashboardLength) {
-        alert("6개 이상하려면 돈내야됨");
+        alert(`${state.maxDashboardLength}개 이상하려면 돈내야됨`);
       } else {
         state.selectedPokemon.includes(pokemonId)
           ? alert("중복")
@@ -39,5 +46,5 @@ const pokemonSlice = createSlice({
   }
 })
 
-export const { setIsPremium, addPokemon, removePokemon } = pokemonSlice.actions;
+export const { setPlan, addPokemon, removePokemon } = pokemonSlice.actions;
 export default pokemonSlice.reducer;

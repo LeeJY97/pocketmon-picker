@@ -25,8 +25,6 @@ const PokemonCard = ({ pokemon, cardType, action, text }) => {
   );
 };
 
-const StImg = styled.img``;
-
 const StCard = styled.div`
   display: flex;
   flex-direction: column;
