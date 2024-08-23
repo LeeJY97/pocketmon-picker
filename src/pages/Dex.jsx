@@ -31,8 +31,6 @@ const StBodySection = styled.section`
 `;
 
 const Dex = () => {
-  useEffect(() => {}, []);
-
   return (
     <StMainContainer>
       <StHeadSection>

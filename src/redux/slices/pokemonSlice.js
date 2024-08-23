@@ -9,12 +9,20 @@ const pokemonSlice = createSlice({
   initialState: {
     allPokemonList: [...initialPokemonList],
     selectedPokemon: [],
+    maxDashboardLength: 6,
+    isPremium: false,
   },
   reducers: {
+    setIsPremium: (state, action) => {
+      console.log('action.payload', action.payload);
+      state.isPremium = action.payload.isPremium;
+      state.maxDashboardLength = action.payload.maxDashboardLength;
+    },
+
     addPokemon: (state, action) => {
       const pokemonId = action.payload;
 
-      if (state.selectedPokemon.length >= 6) {
+      if (state.selectedPokemon.length >= state.maxDashboardLength) {
         alert("6개 이상하려면 돈내야됨");
       } else {
         state.selectedPokemon.includes(pokemonId)
@@ -31,5 +39,5 @@ const pokemonSlice = createSlice({
   }
 })
 
-export const { addPokemon, removePokemon } = pokemonSlice.actions;
+export const { setIsPremium, addPokemon, removePokemon } = pokemonSlice.actions;
 export default pokemonSlice.reducer;

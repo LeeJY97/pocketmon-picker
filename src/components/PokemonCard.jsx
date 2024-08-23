@@ -1,21 +1,17 @@
-import React from "react";
-import styled from "styled-components";
-import Button from "./Button";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import Button from './Button';
+import { Link } from 'react-router-dom';
 
 const imgStyle = {
-  width: "80%",
-  margin: "0px",
+  width: '80%',
+  margin: '0px',
 };
 
 const PokemonCard = ({ pokemon, cardType, action, text }) => {
-  return cardType === "empty" ? (
+  return cardType === 'empty' ? (
     <StEmpty>
-      <img
-        src="/src/assets/images/pokeball.png"
-        alt="포켓볼"
-        style={imgStyle}
-      />
+      <img src='/src/assets/images/pokeball.png' alt='포켓볼' style={imgStyle} />
     </StEmpty>
   ) : (
     <StCard>
@@ -28,6 +24,8 @@ const PokemonCard = ({ pokemon, cardType, action, text }) => {
     </StCard>
   );
 };
+
+const StImg = styled.img``;
 
 const StCard = styled.div`
   display: flex;
