@@ -2,12 +2,12 @@ import React, { useRef } from 'react';
 import PokemonCard from './PokemonCard';
 import styled from 'styled-components';
 import { removePokemon } from '../redux/slices/pokemonSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { setIsPremium } from '../redux/slices/pokemonSlice';
+import { useSelector } from 'react-redux';
 
 const StDashboard = styled.div`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   max-width: 1200px;
   gap: 20px;
 `;
@@ -16,17 +16,6 @@ const Dashboard = () => {
   const { allPokemonList, selectedPokemon, maxDashboardLength } = useSelector(
     (state) => state.pokemon
   );
-
-  const countRef = useRef(0);
-  countRef.current++;
-
-  const dispatch = useDispatch();
-
-  console.log('countRef.current', countRef.current);
-
-  if (countRef.current > 3) {
-    dispatch(setIsPremium({ isPremium: true, maxDashboardLength: 8 }));
-  }
 
   const pokemonList = allPokemonList.filter((pokemon) => {
     return selectedPokemon.includes(pokemon.id) ? true : false;
