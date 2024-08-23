@@ -19,7 +19,8 @@
 
 - styled-components
   - 기본 레이아웃 및 스타일에 적용
-  - props를 이용해 조건부 스타일링
+  - ~~props를 이용해 조건부 스타일링~~
+  - css 라이브러리 사용하여 조건부 스타일링
 - prop-drilling (prop-drilling 브랜치)
   - 최초 개발시 context, redux등의 사용을 하지 않음
   - 작은 규모의 프로젝트임에도 props의 전달 과정 등이 불필요하다고 느낌
