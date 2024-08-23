@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import Dashboard from '../components/Dashboard';
 import PokemonList from '../components/PokemonList';
@@ -34,8 +33,7 @@ const StBodySection = styled.section`
   gap: 20px;
 `;
 
-// 포지션 box를 따로 ..
-// or style 컴포넌트 확장 관련 찾아보기
+// TODO 포지션 box를 따로 or style 컴포넌트 확장 관련 찾아보기
 const StPlanButton = styled.button`
   position: relative;
   top: 100px;

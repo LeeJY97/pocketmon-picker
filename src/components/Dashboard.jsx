@@ -1,4 +1,3 @@
-import React, { useRef } from 'react';
 import PokemonCard from './PokemonCard';
 import styled from 'styled-components';
 import { removePokemon } from '../redux/slices/pokemonSlice';
