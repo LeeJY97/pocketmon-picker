@@ -28,7 +28,7 @@ const Dashboard = () => {
         return (
           <PokemonCard
             key={pokemon ? `dashboard${pokemon.id}` : index}
-            cardType={!pokemon ? 'empty' : ''}
+            cardType={pokemon || 'empty'}
             pokemon={pokemon}
             text='삭제'
             action={removePokemon}
