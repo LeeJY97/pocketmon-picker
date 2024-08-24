@@ -16,24 +16,19 @@ const Dashboard = () => {
     (state) => state.pokemon
   );
 
-  const pokemonList = allPokemonList.filter((pokemon) => {
-    return selectedPokemon.includes(pokemon.id) ? true : false;
-  });
-
-  const pokemonListLength = pokemonList.length;
+  const pokemonList = allPokemonList.filter((pokemon) => selectedPokemon.includes(pokemon.id));
 
   const filledList = pokemonList.concat(
-    new Array(maxDashboardLength - pokemonListLength).fill(null)
+    new Array(maxDashboardLength - pokemonList.length).fill(null)
   );
 
   return (
     <StDashboard>
       {filledList.map((pokemon, index) => {
-        return !pokemon ? (
-          <PokemonCard key={index} cardType='empty' />
-        ) : (
+        return (
           <PokemonCard
-            key={`dashboard${pokemon.id}`}
+            key={pokemon ? `dashboard${pokemon.id}` : index}
+            cardType={!pokemon ? 'empty' : ''}
             pokemon={pokemon}
             text='삭제'
             action={removePokemon}

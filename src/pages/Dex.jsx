@@ -47,13 +47,9 @@ const StPlanButton = styled.button`
 
 const Dex = () => {
   const dispatch = useDispatch();
-
-  const handlePlan = () => {
-    dispatch(setPlan('standard'));
-  };
   return (
     <StMainContainer>
-      <StPlanButton onClick={handlePlan}>유료</StPlanButton>
+      <StPlanButton onClick={() => dispatch(setPlan('standard'))}>유료</StPlanButton>
       <StHeadSection>
         <h1>나만의 포켓몬</h1>
         <Dashboard />

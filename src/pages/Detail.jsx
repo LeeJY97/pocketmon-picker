@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from '../components/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 import MOCK_DATA from '../mock';
