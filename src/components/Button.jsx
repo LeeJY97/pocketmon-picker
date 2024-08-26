@@ -17,8 +17,6 @@ const Button = ({ text, type = 'default', id, action }) => {
   const dispatch = useDispatch();
   const colorStyle = COLORS[type];
 
-  console.log('colorStyle', colorStyle);
-
   return (
     <StBtn colorStyle={colorStyle} onClick={() => dispatch(action(id))}>
       {text}

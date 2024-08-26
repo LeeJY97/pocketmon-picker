@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Button from './Button';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setDetail } from '../redux/slices/pokemonSlice';
 
 const imgStyle = {
   width: '100%',
@@ -8,13 +10,15 @@ const imgStyle = {
 };
 
 const PokemonCard = ({ pokemon, cardType, action, text }) => {
+  const dispatch = useDispatch();
   return cardType === 'empty' ? (
     <StEmpty>
       <img src='/src/assets/images/pokeball.png' alt='포켓볼' style={imgStyle} />
     </StEmpty>
   ) : (
     <StCard>
-      <StLink to={`./Detail/${pokemon.id}`}>
+      {/* <StLink to={`./Detail/${pokemon.id}`}> */}
+      <StLink onClick={() => dispatch(setDetail({ type: '', id: pokemon.id }))} to={`./Detail`}>
         <img src={pokemon.img_url} alt={pokemon.korean_name} />
       </StLink>
       <h3>{pokemon.korean_name}</h3>

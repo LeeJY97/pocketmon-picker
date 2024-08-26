@@ -10,9 +10,13 @@ const StMainContainer = styled.div`
   width: 100%;
   min-width: 1400px;
   position: absolute;
+  background-image: url('https://img.freepik.com/free-vector/gradient-pastel-sky-background_23-2148908165.jpg?t=st=1724679600~exp=1724683200~hmac=ba812abc090a613dec7b08c8d1fa76ea4c2b427c0faaca548a89aebcd833bc32&w=1060');
+  background-size: 1920px 1080px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 `;
 
-// TODO 포지션 box를 따로 or style 컴포넌트 확장 관련 찾아보기
 const StPlanButton = styled.button`
   position: relative;
   top: 100px;

@@ -14,16 +14,37 @@ const pokemonSlice = createSlice({
   initialState: {
     allPokemonList: [...initialPokemonList],
     selectedPokemon: [],
+    selectedDetail: 0,
     plan: 'none',
     maxDashboardLength: 6,
   },
   reducers: {
     setPlan: (state, action) => {
-      console.log('action.payload', action.payload);
-
       state.plan = action.payload;
-
       state.maxDashboardLength = planMap[action.payload].maxDashboardLength
+    },
+    setDetail: (state, action) => {
+      console.log('action.payload', action.payload);
+      const pokemonId = action.payload.id;
+      const startId = 1;
+      const endId = state.allPokemonList.length;
+      let showId = 0;
+
+      if (action.payload.type === 'prev') {
+        showId = pokemonId - 1;
+        if (pokemonId === startId) {
+          showId = endId;
+        }
+      } else if (action.payload.type === 'next') {
+        showId = pokemonId + 1;
+        if (pokemonId === endId) {
+          showId = startId;
+        }
+      } else {
+        showId = action.payload.id;
+      }
+
+      state.selectedDetail = showId;
     },
 
     addPokemon: (state, action) => {
@@ -46,5 +67,5 @@ const pokemonSlice = createSlice({
   }
 })
 
-export const { setPlan, addPokemon, removePokemon } = pokemonSlice.actions;
+export const { setPlan, addPokemon, removePokemon, setDetail } = pokemonSlice.actions;
 export default pokemonSlice.reducer;
