@@ -1,13 +1,11 @@
 import Button from '../components/Button';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import MOCK_DATA from '../mock';
 import { StMain } from '../styled/StMain';
 import { addPokemon } from '../redux/slices/pokemonSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { setDetail } from '../redux/slices/pokemonSlice';
-
-const StSlide = styled.div``;
 
 const StCard = styled.div`
   width: 250px;

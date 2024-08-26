@@ -2,7 +2,7 @@ import PokemonCard from './PokemonCard';
 import styled from 'styled-components';
 import { removePokemon } from '../redux/slices/pokemonSlice';
 import { useSelector } from 'react-redux';
-import { useEffect, useRef } from 'react';
+import useDashboard from '../hooks/useDashboard';
 
 const StDashboard = styled.div`
   display: flex;
@@ -18,27 +18,7 @@ const StDashboard = styled.div`
 `;
 
 const Dashboard = () => {
-  const dashboardRef = useRef(null);
-
-  useEffect(() => {
-    const handleWheel = (event) => {
-      if (dashboardRef.current) {
-        dashboardRef.current.scrollLeft += event.deltaY;
-        event.preventDefault();
-      }
-    };
-
-    const element = dashboardRef.current;
-    if (element) {
-      element.addEventListener('wheel', handleWheel);
-    }
-
-    return () => {
-      if (element) {
-        element.removeEventListener('wheel', handleWheel);
-      }
-    };
-  }, []);
+  const dashboardRef = useDashboard();
 
   const { allPokemonList, selectedPokemon, maxDashboardLength } = useSelector(
     (state) => state.pokemon

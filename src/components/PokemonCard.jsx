@@ -17,7 +17,6 @@ const PokemonCard = ({ pokemon, cardType, action, text }) => {
     </StEmpty>
   ) : (
     <StCard>
-      {/* <StLink to={`./Detail/${pokemon.id}`}> */}
       <StLink onClick={() => dispatch(setDetail({ type: '', id: pokemon.id }))} to={`./Detail`}>
         <img src={pokemon.img_url} alt={pokemon.korean_name} />
       </StLink>
