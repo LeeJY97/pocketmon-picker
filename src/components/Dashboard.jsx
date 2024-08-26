@@ -2,7 +2,7 @@ import PokemonCard from './PokemonCard';
 import styled from 'styled-components';
 import { removePokemon } from '../redux/slices/pokemonSlice';
 import { useSelector } from 'react-redux';
-import useDashboard from '../hooks/useDashboard';
+import useWheel from '../hooks/useWheel';
 
 const StDashboard = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const StDashboard = styled.div`
 `;
 
 const Dashboard = () => {
-  const dashboardRef = useDashboard();
+  const dashboardRef = useWheel();
 
   const { allPokemonList, selectedPokemon, maxDashboardLength } = useSelector(
     (state) => state.pokemon

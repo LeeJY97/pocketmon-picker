@@ -24,7 +24,6 @@ const pokemonSlice = createSlice({
       state.maxDashboardLength = planMap[action.payload].maxDashboardLength
     },
     setDetail: (state, action) => {
-      console.log('action.payload', action.payload);
       const pokemonId = action.payload.id;
       const startId = 1;
       const endId = state.allPokemonList.length;

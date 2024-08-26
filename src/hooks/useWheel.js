@@ -1,18 +1,18 @@
 import { useEffect, useRef } from "react";
 
-const useDashboard = () => {
+const useWheel = () => {
 
-  const dashboardRef = useRef(null);
+  const ref = useRef(null);
 
   useEffect(() => {
     const handleWheel = (event) => {
-      if (dashboardRef.current) {
-        dashboardRef.current.scrollLeft += event.deltaY;
+      if (ref.current) {
+        ref.current.scrollLeft += event.deltaY;
         event.preventDefault();
       }
     };
 
-    const element = dashboardRef.current;
+    const element = ref.current;
     if (element) {
       element.addEventListener('wheel', handleWheel);
     }
@@ -24,7 +24,7 @@ const useDashboard = () => {
     };
   }, []);
 
-  return dashboardRef;
+  return ref;
 }
 
-export default useDashboard;
+export default useWheel;
