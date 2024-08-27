@@ -36,7 +36,6 @@ const pokemonSlice = createSlice({
 
       state.page = page;
       state.pageItems = state.allPokemonList.slice(startIndex, endIndex);
-      // state.pageItems = allPokemonList.slice(state.page, state.)
 
     },
     setPlan: (state, action) => {
@@ -70,7 +69,8 @@ const pokemonSlice = createSlice({
       if (state.selectedPokemon.length >= state.maxDashboardLength) {
         alert(`${state.maxDashboardLength}개 이상하려면 돈내야됨`);
       } else {
-        state.selectedPokemon.includes(pokemon)
+        const isSelected = state.selectedPokemon.some(p => p.id === pokemon.id);
+        isSelected
           ? alert("중복")
           : state.selectedPokemon.push(pokemon);
       }

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setPageItems, setPlan } from '../redux/slices/pokemonSlice';
 import HeadSection from '../components/HeadSection';
 import BodySection from '../components/BodySection';
 import AddPokemonList from '../components/AddPokemonList';
-import Button from '../components/Button';
 import useIntersectionObserver from '../hooks/useIntersectionObserver';
 import { useEffect } from 'react';
 import PageButtonSection from '../components/PageButtonSection';
+import Planbutton from '../components/Planbutton';
 
 const StMainContainer = styled.div`
   display: flex;
@@ -42,10 +42,12 @@ const Dex = () => {
   return (
     <StMainContainer>
       <StPlanBox>
-        <Button text='유료' onClick={() => dispatch(setPlan('premium'))} />
+        <Planbutton action={setPlan} plan='premium'>
+          유료
+        </Planbutton>
       </StPlanBox>
       <HeadSection headSectionRef={headSectionRef} />
-      {!isHeadSectionVisible && <AddPokemonList />}
+      {!isHeadSectionVisible && <AddPokemonList direction={'column'} />}
       <BodySection />
       <PageButtonSection />
     </StMainContainer>

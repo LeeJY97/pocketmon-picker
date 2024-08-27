@@ -12,22 +12,22 @@ const COLORS = {
   `,
 };
 
+const StBtn = styled.button`
+  ${(props) => props['data-color-style']}
+  border: none;
+  padding: 3px 5px 3px 5px;
+  border-radius: 4px;
+`;
+
 const Button = ({ text, type = 'default', pokemon, action }) => {
   const dispatch = useDispatch();
   const colorStyle = COLORS[type];
 
   return (
-    <StBtn colorStyle={colorStyle} onClick={() => dispatch(action(pokemon))}>
+    <StBtn data-color-style={colorStyle} onClick={() => dispatch(action(pokemon))}>
       {text}
     </StBtn>
   );
 };
-
-const StBtn = styled.button`
-  ${(props) => props.colorStyle}
-  border: none;
-  padding: 3px 5px 3px 5px;
-  border-radius: 4px;
-`;
 
 export default Button;

@@ -1,19 +1,15 @@
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import useWheel from '../hooks/useWheel';
 
 const StBox = styled.ul`
-  width: 200px;
-  height: 600px;
   position: fixed;
-  top: 50%;
-  left: 50px;
   transform: translate(0, -50%);
 
   display: flex;
-  flex-direction: column;
   justify-content: start;
   align-items: center;
-  overflow-y: scroll;
+  ${(props) => props['data-direction-style']}
   &::-webkit-scrollbar {
     display: none;
   }
@@ -31,11 +27,32 @@ const StList = styled.li`
   flex-shrink: 0;
 `;
 
-const AddPokemonList = () => {
+const DIRECTION = {
+  column: css`
+    flex-direction: column;
+    overflow-y: scroll;
+    width: 200px;
+    height: 600px;
+    top: 50%;
+    left: 50px;
+  `,
+  row: css`
+    flex-direction: row;
+    overflow-x: scroll;
+    width: 1000px;
+    height: 200px;
+    top: 100px;
+  `,
+};
+
+const AddPokemonList = ({ direction }) => {
   const { selectedPokemon } = useSelector((state) => state.pokemon);
+  const tempRef = useWheel();
+  const adjustedRef = direction === 'row' ? tempRef : null;
+  const directionStyle = DIRECTION[direction];
 
   return (
-    <StBox>
+    <StBox data-direction-style={directionStyle} ref={adjustedRef}>
       {selectedPokemon.map((pokemon) => {
         return (
           <StList key={pokemon.id}>

@@ -6,6 +6,7 @@ import { addPokemon } from '../redux/slices/pokemonSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { setDetail } from '../redux/slices/pokemonSlice';
+import AddPokemonList from '../components/AddPokemonList';
 
 const StCard = styled.div`
   width: 250px;
@@ -68,25 +69,26 @@ const Detail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { selectedDetail } = useSelector((state) => state.pokemon);
-  const { img_url, korean_name, types, id, description } = MOCK_DATA[selectedDetail - 1];
+  const pokemon = MOCK_DATA[selectedDetail - 1];
 
   return (
     <StMain gap={'10px'}>
+      <AddPokemonList direction={'row'} />
       <StCard>
-        <CardImage src={img_url} />
+        <CardImage src={pokemon.img_url} />
         <CardContent>
-          <CardTitle>{`No.${id} ${korean_name}`}</CardTitle>
-          <CardDescription>{description}</CardDescription>
+          <CardTitle>{`No.${pokemon.id} ${pokemon.korean_name}`}</CardTitle>
+          <CardDescription>{pokemon.description}</CardDescription>
         </CardContent>
         <CardFooter>
-          <FooterText>{`[${types.join(', ')}]`}</FooterText>
+          <FooterText>{`[${pokemon.types.join(', ')}]`}</FooterText>
         </CardFooter>
       </StCard>
       <Button
         text='추가'
         type='default'
         action={() => {
-          dispatch(addPokemon(id));
+          dispatch(addPokemon(pokemon));
         }}
       ></Button>
 
@@ -94,12 +96,12 @@ const Detail = () => {
       <Button
         text='이전 포켓몬'
         type='back'
-        action={() => dispatch(setDetail({ type: 'prev', id }))}
+        action={() => dispatch(setDetail({ type: 'prev', id: pokemon.id }))}
       ></Button>
       <Button
         text='다음 포켓몬'
         type='back'
-        action={() => dispatch(setDetail({ type: 'next', id }))}
+        action={() => dispatch(setDetail({ type: 'next', id: pokemon.id }))}
       ></Button>
     </StMain>
   );

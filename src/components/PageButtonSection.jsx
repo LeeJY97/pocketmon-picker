@@ -2,19 +2,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { setPageItems } from '../redux/slices/pokemonSlice';
 
-const getColors = (isSelected) => {
-  switch (isSelected) {
-    case true:
-      return css`
-        background-color: #202020;
-        color: #e6e6e6;
-      `;
-    default:
-      return css`
-        background-color: #e6e6e6;
-        color: #202020;
-      `;
-  }
+const COLORS = {
+  true: css`
+    background-color: #202020;
+    color: #e6e6e6;
+  `,
+  false: css`
+    background-color: #e6e6e6;
+    color: #202020;
+  `,
 };
 
 const StPageWrap = styled.div`
@@ -28,7 +24,7 @@ const StPageWrap = styled.div`
 `;
 
 const StPageButton = styled.button`
-  ${(props) => getColors(props.isSelected)}
+  ${(props) => COLORS[props['data-is-selected']]};
   border-radius: 50px;
   border: none;
   width: 30px;
@@ -45,7 +41,7 @@ const PageButtonSection = () => {
         <StPageButton
           key={page}
           onClick={() => dispatch(setPageItems(page))}
-          isSelected={currentPage === page}
+          data-is-selected={currentPage === page}
         >
           {page}
         </StPageButton>
