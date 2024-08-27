@@ -45,14 +45,14 @@ const pokemonSlice = createSlice({
     },
 
     addPokemon: (state, action) => {
-      const pokemonId = action.payload;
+      const pokemon = action.payload;
 
       if (state.selectedPokemon.length >= state.maxDashboardLength) {
         alert(`${state.maxDashboardLength}개 이상하려면 돈내야됨`);
       } else {
-        state.selectedPokemon.includes(pokemonId)
+        state.selectedPokemon.includes(pokemon)
           ? alert("중복")
-          : state.selectedPokemon.push(pokemonId);
+          : state.selectedPokemon.push(pokemon);
       }
     },
 

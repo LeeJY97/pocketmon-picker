@@ -4,6 +4,9 @@ import { setPlan } from '../redux/slices/pokemonSlice';
 import HeadSection from '../components/HeadSection';
 import BodySection from '../components/BodySection';
 import AddPokemonList from '../components/AddPokemonList';
+import Button from '../components/Button';
+import { useEffect, useRef, useState } from 'react';
+import useIntersectionObserver from '../hooks/useIntersectionObserver';
 
 const StMainContainer = styled.div`
   display: flex;
@@ -18,12 +21,10 @@ const StMainContainer = styled.div`
   background-attachment: fixed;
 `;
 
-const StPlanButton = styled.button`
+const StPlanBox = styled.div`
   position: fixed;
   top: 100px;
   right: 50px;
-  width: 50px;
-  height: 30px;
   background-color: #b2b2f3;
   border-radius: 6px;
   border: none;
@@ -31,11 +32,15 @@ const StPlanButton = styled.button`
 
 const Dex = () => {
   const dispatch = useDispatch();
+  const [isHeadSectionVisible, headSectionRef] = useIntersectionObserver();
+
   return (
     <StMainContainer>
-      <AddPokemonList />
-      <StPlanButton onClick={() => dispatch(setPlan('premium'))}>유료</StPlanButton>
-      <HeadSection />
+      <StPlanBox>
+        <Button text='유료' onClick={() => dispatch(setPlan('premium'))} />
+      </StPlanBox>
+      <HeadSection headSectionRef={headSectionRef} />
+      {!isHeadSectionVisible && <AddPokemonList />}
       <BodySection />
     </StMainContainer>
   );

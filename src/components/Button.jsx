@@ -12,12 +12,12 @@ const COLORS = {
   `,
 };
 
-const Button = ({ text, type = 'default', id, action }) => {
+const Button = ({ text, type = 'default', pokemon, action }) => {
   const dispatch = useDispatch();
   const colorStyle = COLORS[type];
 
   return (
-    <StBtn colorStyle={colorStyle} onClick={() => dispatch(action(id))}>
+    <StBtn colorStyle={colorStyle} onClick={() => dispatch(action(pokemon))}>
       {text}
     </StBtn>
   );

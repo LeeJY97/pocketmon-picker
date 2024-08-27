@@ -32,13 +32,11 @@ const StList = styled.li`
 `;
 
 const AddPokemonList = () => {
-  const { allPokemonList, selectedPokemon } = useSelector((state) => state.pokemon);
-
-  const pokemonList = allPokemonList.filter((pokemon) => selectedPokemon.includes(pokemon.id));
+  const { selectedPokemon } = useSelector((state) => state.pokemon);
 
   return (
     <StBox>
-      {pokemonList.map((pokemon) => {
+      {selectedPokemon.map((pokemon) => {
         return (
           <StList key={pokemon.id}>
             <img src={pokemon.img_url} />

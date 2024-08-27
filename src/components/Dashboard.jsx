@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { removePokemon } from '../redux/slices/pokemonSlice';
 import { useSelector } from 'react-redux';
 import useWheel from '../hooks/useWheel';
+import PokemonEmptyCard from './PokemonEmptyCard';
 
 const StDashboard = styled.div`
   display: flex;
@@ -20,19 +21,12 @@ const StDashboard = styled.div`
 const Dashboard = () => {
   const dashboardRef = useWheel();
 
-  const { allPokemonList, selectedPokemon, maxDashboardLength } = useSelector(
-    (state) => state.pokemon
-  );
-
-  const pokemonList = allPokemonList.filter((pokemon) => selectedPokemon.includes(pokemon.id));
-
-  const filledList = pokemonList.concat(
-    new Array(maxDashboardLength - pokemonList.length).fill(null)
-  );
+  const { selectedPokemon, maxDashboardLength } = useSelector((state) => state.pokemon);
+  const emptyList = new Array(maxDashboardLength - selectedPokemon.length).fill(null);
 
   return (
     <StDashboard ref={dashboardRef}>
-      {filledList.map((pokemon, index) => {
+      {selectedPokemon.map((pokemon, index) => {
         return (
           <PokemonCard
             key={pokemon ? `dashboard${pokemon.id}` : index}
@@ -43,6 +37,9 @@ const Dashboard = () => {
           />
         );
       })}
+      {emptyList.map((_, index) => (
+        <PokemonEmptyCard key={index} />
+      ))}
     </StDashboard>
   );
 };
