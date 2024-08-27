@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setPlan } from '../redux/slices/pokemonSlice';
 import HeadSection from '../components/HeadSection';
 import BodySection from '../components/BodySection';
+import AddPokemonList from '../components/AddPokemonList';
 
 const StMainContainer = styled.div`
   display: flex;
@@ -18,9 +19,9 @@ const StMainContainer = styled.div`
 `;
 
 const StPlanButton = styled.button`
-  position: relative;
+  position: fixed;
   top: 100px;
-  left: 50px;
+  right: 50px;
   width: 50px;
   height: 30px;
   background-color: #b2b2f3;
@@ -32,6 +33,7 @@ const Dex = () => {
   const dispatch = useDispatch();
   return (
     <StMainContainer>
+      <AddPokemonList />
       <StPlanButton onClick={() => dispatch(setPlan('premium'))}>유료</StPlanButton>
       <HeadSection />
       <BodySection />
