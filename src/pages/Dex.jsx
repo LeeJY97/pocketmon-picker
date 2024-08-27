@@ -7,6 +7,7 @@ import AddPokemonList from '../components/AddPokemonList';
 import Button from '../components/Button';
 import useIntersectionObserver from '../hooks/useIntersectionObserver';
 import { useEffect } from 'react';
+import PageButtonSection from '../components/PageButtonSection';
 
 const StMainContainer = styled.div`
   display: flex;
@@ -30,28 +31,8 @@ const StPlanBox = styled.div`
   border: none;
 `;
 
-const StPageWrap = styled.div`
-  display: flex;
-  margin: 30px auto;
-  width: 900px;
-  height: 50px;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-`;
-
-const StPageButton = styled.button`
-  background-color: #e6e6e6;
-  color: #202020;
-  border-radius: 50px;
-  border: none;
-  width: 30px;
-  height: 30px;
-`;
-
 const Dex = () => {
   const dispatch = useDispatch();
-  const { buttonList } = useSelector((state) => state.pokemon);
   const [isHeadSectionVisible, headSectionRef] = useIntersectionObserver();
 
   useEffect(() => {
@@ -66,13 +47,7 @@ const Dex = () => {
       <HeadSection headSectionRef={headSectionRef} />
       {!isHeadSectionVisible && <AddPokemonList />}
       <BodySection />
-      <StPageWrap>
-        {buttonList.map((page) => (
-          <StPageButton key={page} onClick={() => dispatch(setPageItems(page))}>
-            {page}
-          </StPageButton>
-        ))}
-      </StPageWrap>
+      <PageButtonSection />
     </StMainContainer>
   );
 };

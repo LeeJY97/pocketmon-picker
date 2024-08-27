@@ -34,6 +34,7 @@ const pokemonSlice = createSlice({
       const startIndex = (page - 1) * state.itemsPerPage;
       const endIndex = startIndex + state.itemsPerPage;
 
+      state.page = page;
       state.pageItems = state.allPokemonList.slice(startIndex, endIndex);
       // state.pageItems = allPokemonList.slice(state.page, state.)
 
