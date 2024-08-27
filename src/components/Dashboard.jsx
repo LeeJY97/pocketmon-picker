@@ -26,11 +26,10 @@ const Dashboard = () => {
 
   return (
     <StDashboard ref={dashboardRef}>
-      {selectedPokemon.map((pokemon, index) => {
+      {selectedPokemon.map((pokemon) => {
         return (
           <PokemonCard
-            key={pokemon ? `dashboard${pokemon.id}` : index}
-            cardType={pokemon || 'empty'}
+            key={`dashboard${pokemon.id}`}
             pokemon={pokemon}
             text='삭제'
             action={removePokemon}

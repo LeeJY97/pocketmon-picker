@@ -23,7 +23,6 @@ const StHeadSection = styled.section`
 `;
 
 const HeadSection = ({ headSectionRef }) => {
-  console.log('headSectionRef', headSectionRef);
   return (
     <StHeadSection ref={headSectionRef}>
       <h1>MY POKEMON</h1>
