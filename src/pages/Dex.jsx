@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { setPlan } from '../redux/slices/pokemonSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPageItems, setPlan } from '../redux/slices/pokemonSlice';
 import HeadSection from '../components/HeadSection';
 import BodySection from '../components/BodySection';
 import AddPokemonList from '../components/AddPokemonList';
 import Button from '../components/Button';
-import { useEffect, useRef, useState } from 'react';
 import useIntersectionObserver from '../hooks/useIntersectionObserver';
+import { useEffect } from 'react';
 
 const StMainContainer = styled.div`
   display: flex;
@@ -30,9 +30,33 @@ const StPlanBox = styled.div`
   border: none;
 `;
 
+const StPageWrap = styled.div`
+  display: flex;
+  margin: 30px auto;
+  width: 900px;
+  height: 50px;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StPageButton = styled.button`
+  background-color: #e6e6e6;
+  color: #202020;
+  border-radius: 50px;
+  border: none;
+  width: 30px;
+  height: 30px;
+`;
+
 const Dex = () => {
   const dispatch = useDispatch();
+  const { buttonList } = useSelector((state) => state.pokemon);
   const [isHeadSectionVisible, headSectionRef] = useIntersectionObserver();
+
+  useEffect(() => {
+    dispatch(setPageItems(1));
+  }, []);
 
   return (
     <StMainContainer>
@@ -42,6 +66,13 @@ const Dex = () => {
       <HeadSection headSectionRef={headSectionRef} />
       {!isHeadSectionVisible && <AddPokemonList />}
       <BodySection />
+      <StPageWrap>
+        {buttonList.map((page) => (
+          <StPageButton key={page} onClick={() => dispatch(setPageItems(page))}>
+            {page}
+          </StPageButton>
+        ))}
+      </StPageWrap>
     </StMainContainer>
   );
 };

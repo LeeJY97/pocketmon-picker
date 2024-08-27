@@ -2,11 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 import MOCK_DATA from "../../mock";
 
 const initialPokemonList = MOCK_DATA;
+const initialItemPerPage = 20;
 
 const planMap = {
   'free': { maxDashboardLength: 6 },
   'standard': { maxDashboardLength: 8 },
   'premium': { maxDashboardLength: 30 },
+}
+
+const getInitialPageButtons = () => {
+  const length = Math.ceil(initialPokemonList.length / initialItemPerPage);
+  return Array.from({ length }, (_, index) => index + 1);
 }
 
 const pokemonSlice = createSlice({
@@ -17,8 +23,21 @@ const pokemonSlice = createSlice({
     selectedDetail: 0,
     plan: 'none',
     maxDashboardLength: 6,
+    itemsPerPage: initialItemPerPage,
+    page: 1,
+    buttonList: getInitialPageButtons(),
+    pageItems: [],
   },
   reducers: {
+    setPageItems: (state, action) => {
+      const page = action.payload;
+      const startIndex = (page - 1) * state.itemsPerPage;
+      const endIndex = startIndex + state.itemsPerPage;
+
+      state.pageItems = state.allPokemonList.slice(startIndex, endIndex);
+      // state.pageItems = allPokemonList.slice(state.page, state.)
+
+    },
     setPlan: (state, action) => {
       state.plan = action.payload;
       state.maxDashboardLength = planMap[action.payload].maxDashboardLength
@@ -64,5 +83,5 @@ const pokemonSlice = createSlice({
   }
 })
 
-export const { setPlan, addPokemon, removePokemon, setDetail } = pokemonSlice.actions;
+export const { setPlan, addPokemon, removePokemon, setDetail, setPageItems } = pokemonSlice.actions;
 export default pokemonSlice.reducer;

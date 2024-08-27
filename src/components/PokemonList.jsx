@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import { addPokemon } from '../redux/slices/pokemonSlice';
 
 const PokemonList = () => {
-  const { allPokemonList } = useSelector((state) => state.pokemon);
+  const { pageItems } = useSelector((state) => state.pokemon);
 
   return (
     <>
-      {allPokemonList.map((pokemon) => {
+      {pageItems.map((pokemon) => {
         return <PokemonCard key={pokemon.id} pokemon={pokemon} text='추가' action={addPokemon} />;
       })}
     </>

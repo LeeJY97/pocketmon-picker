@@ -22,6 +22,10 @@ footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
 
+button{
+  cursor: pointer;
+}
+
 body {
   line-height: 1;
   font-family: 'PFStardust';
