@@ -7,14 +7,14 @@ import { setDetail } from '../redux/slices/pokemonSlice';
 const PokemonCard = ({ pokemon, action, text }) => {
   const dispatch = useDispatch();
   return (
-    <StCard>
+    <StContainer>
       <StLink onClick={() => dispatch(setDetail({ type: '', id: pokemon.id }))} to={`./Detail`}>
         <img src={pokemon.img_url} alt={pokemon.korean_name} />
       </StLink>
       <h3>{pokemon.korean_name}</h3>
       <span>No. {pokemon.id}</span>
       <Button text={text} action={action} pokemon={pokemon}></Button>
-    </StCard>
+    </StContainer>
   );
 };
 
@@ -23,7 +23,7 @@ const StLink = styled(Link)`
   margin: '0px';
 `;
 
-const StCard = styled.div`
+const StContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -53,7 +53,6 @@ const StCard = styled.div`
     color: #333;
   }
 
-  /* 카드 ID */
   span {
     font-size: 0.9em;
     color: #666;

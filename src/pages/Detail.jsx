@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { setDetail } from '../redux/slices/pokemonSlice';
 import AddPokemonList from '../components/AddPokemonList';
 
-const StCard = styled.div`
+const StArea = styled.div`
   width: 250px;
   height: 350px;
   background: #ffffff;
@@ -21,50 +21,50 @@ const StCard = styled.div`
   align-items: center;
   text-align: center;
   gap: 10px;
+
+  img {
+    width: 100%;
+    height: 40%;
+    object-fit: contain;
+  }
+
+  .cardContents {
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #333;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #666;
+    margin: 10px 0;
+  }
+
+  .cardFooter {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #f4f4f4;
+    padding: 10px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+
+    p {
+      font-size: 0.9rem;
+      margin: 0;
+      color: #333;
+    }
+  }
 `;
 
-const CardImage = styled.img`
-  width: 100%;
-  height: 40%;
-  object-fit: contain;
-`;
-
-const CardContent = styled.div`
-  padding: 15px;
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
-const CardTitle = styled.h2`
-  font-size: 1.1rem;
-  margin: 0;
-  color: #333;
-`;
-
-const CardDescription = styled.p`
-  font-size: 1rem;
-  color: #666;
-  margin: 10px 0;
-`;
-
-const CardFooter = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: #f4f4f4;
-  padding: 10px;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-`;
-
-const FooterText = styled.p`
-  font-size: 0.9rem;
-  margin: 0;
-  color: #333;
-`;
-// TODO 무한 슬라이드 ?
 const Detail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -74,16 +74,16 @@ const Detail = () => {
   return (
     <StMain gap={'10px'}>
       <AddPokemonList direction={'row'} />
-      <StCard>
-        <CardImage src={pokemon.img_url} />
-        <CardContent>
-          <CardTitle>{`No.${pokemon.id} ${pokemon.korean_name}`}</CardTitle>
-          <CardDescription>{pokemon.description}</CardDescription>
-        </CardContent>
-        <CardFooter>
-          <FooterText>{`[${pokemon.types.join(', ')}]`}</FooterText>
-        </CardFooter>
-      </StCard>
+      <StArea>
+        <img src={pokemon.img_url} />
+        <div className='cardContents'>
+          <h2>{`No.${pokemon.id} ${pokemon.korean_name}`}</h2>
+          <p>{pokemon.description}</p>
+        </div>
+        <div className='cardFooter'>
+          <p>{`[${pokemon.types.join(', ')}]`}</p>
+        </div>
+      </StArea>
       <Button
         text='추가'
         type='default'

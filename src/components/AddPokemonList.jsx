@@ -2,14 +2,15 @@ import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import useWheel from '../hooks/useWheel';
 
-const StBox = styled.ul`
+const StContainer = styled.ul`
+  ${(props) => props['data-direction-style']}
   position: fixed;
   transform: translate(0, -50%);
 
   display: flex;
   justify-content: start;
   align-items: center;
-  ${(props) => props['data-direction-style']}
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -52,7 +53,7 @@ const AddPokemonList = ({ direction }) => {
   const directionStyle = DIRECTION[direction];
 
   return (
-    <StBox data-direction-style={directionStyle} ref={adjustedRef}>
+    <StContainer data-direction-style={directionStyle} ref={adjustedRef}>
       {selectedPokemon.map((pokemon) => {
         return (
           <StList key={pokemon.id}>
@@ -60,7 +61,7 @@ const AddPokemonList = ({ direction }) => {
           </StList>
         );
       })}
-    </StBox>
+    </StContainer>
   );
 };
 

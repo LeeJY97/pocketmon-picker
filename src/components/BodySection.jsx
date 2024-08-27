@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PokemonList from './PokemonList';
 
-const StBodySection = styled.section`
+const StContainer = styled.section`
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -18,9 +18,9 @@ const StBodySection = styled.section`
 
 const BodySection = () => {
   return (
-    <StBodySection>
+    <StContainer>
       <PokemonList />
-    </StBodySection>
+    </StContainer>
   );
 };
 

@@ -5,7 +5,7 @@ const imgStyle = {
   margin: '0px',
 };
 
-const StEmpty = styled.div`
+const StContainer = styled.div`
   flex-shrink: 0;
   border: 2px dashed #aaa; /* 회색을 약간 밝은 색으로 변경 */
   width: 200px;
@@ -29,9 +29,9 @@ const StEmpty = styled.div`
 
 const PokemonEmptyCard = () => {
   return (
-    <StEmpty>
+    <StContainer>
       <img src='/src/assets/images/pokeball.png' alt='포켓볼' style={imgStyle} />
-    </StEmpty>
+    </StContainer>
   );
 };
 

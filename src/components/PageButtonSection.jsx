@@ -13,7 +13,7 @@ const COLORS = {
   `,
 };
 
-const StPageWrap = styled.div`
+const StContainer = styled.div`
   display: flex;
   margin: 30px auto;
   width: 900px;
@@ -36,7 +36,7 @@ const PageButtonSection = () => {
   const { buttonList, page: currentPage } = useSelector((state) => state.pokemon);
 
   return (
-    <StPageWrap>
+    <StContainer>
       {buttonList.map((page) => (
         <StPageButton
           key={page}
@@ -46,7 +46,7 @@ const PageButtonSection = () => {
           {page}
         </StPageButton>
       ))}
-    </StPageWrap>
+    </StContainer>
   );
 };
 

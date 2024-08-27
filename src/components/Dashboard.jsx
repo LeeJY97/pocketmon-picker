@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import useWheel from '../hooks/useWheel';
 import PokemonEmptyCard from './PokemonEmptyCard';
 
-const StDashboard = styled.div`
+const StContainer = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
@@ -25,7 +25,7 @@ const Dashboard = () => {
   const emptyList = new Array(maxDashboardLength - selectedPokemon.length).fill(null);
 
   return (
-    <StDashboard ref={dashboardRef}>
+    <StContainer ref={dashboardRef}>
       {selectedPokemon.map((pokemon) => {
         return (
           <PokemonCard
@@ -40,7 +40,7 @@ const Dashboard = () => {
       {emptyList.map((_, index) => (
         <PokemonEmptyCard key={index} />
       ))}
-    </StDashboard>
+    </StContainer>
   );
 };
 

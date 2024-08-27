@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Dashboard from './Dashboard';
 
-const StHeadSection = styled.section`
+const StContainer = styled.section`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -24,10 +24,10 @@ const StHeadSection = styled.section`
 
 const HeadSection = ({ headSectionRef }) => {
   return (
-    <StHeadSection ref={headSectionRef}>
+    <StContainer ref={headSectionRef}>
       <h1>MY POKEMON</h1>
       <Dashboard />
-    </StHeadSection>
+    </StContainer>
   );
 };
 
