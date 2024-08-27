@@ -27,20 +27,18 @@ const pokemonSlice = createSlice({
       const pokemonId = action.payload.id;
       const startId = 1;
       const endId = state.allPokemonList.length;
+
       let showId = 0;
 
-      if (action.payload.type === 'prev') {
-        showId = pokemonId - 1;
-        if (pokemonId === startId) {
-          showId = endId;
-        }
-      } else if (action.payload.type === 'next') {
-        showId = pokemonId + 1;
-        if (pokemonId === endId) {
-          showId = startId;
-        }
-      } else {
-        showId = action.payload.id;
+      switch (action.payload.type) {
+        case 'prev':
+          showId = pokemonId === startId ? endId : pokemonId - 1;
+          break;
+        case 'next':
+          showId = pokemonId === endId ? startId : pokemonId + 1;
+          break;
+        default:
+          showId = pokemonId;
       }
 
       state.selectedDetail = showId;
