@@ -29,7 +29,8 @@ const Dashboard = () => {
       {selectedPokemon.map((pokemon) => {
         return (
           <PokemonCard
-            key={`dashboard${pokemon.id}`}
+            // key={`dashboard${pokemon.id}`}
+            key={pokemon.id}
             pokemon={pokemon}
             text='삭제'
             action={removePokemon}

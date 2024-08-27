@@ -57,8 +57,8 @@ const pokemonSlice = createSlice({
     },
 
     removePokemon: (state, action) => {
-      const pokemonId = action.payload;
-      const removeArray = state.selectedPokemon.filter((id) => id !== pokemonId);
+      const removePokemon = action.payload;
+      const removeArray = state.selectedPokemon.filter((pokemon) => pokemon.id !== removePokemon.id);
       state.selectedPokemon = removeArray;
     }
   }
